@@ -1,0 +1,16 @@
+#/etc/systemd/system/disable-nvidia.service
+#sudo systemctl enable disable-nvidia.service
+#runs gpu disable script as root at graphical.target
+
+[Unit]
+Description=run root script at resume
+After=graphical.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/sleep 8
+ExecStart=/usr/local/bin/optimus.sh
+
+[Install]
+WantedBy=graphical.target
